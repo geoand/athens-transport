@@ -1,0 +1,5 @@
+rootProject.name = 'athens-transport'
+
+include 'raw-client'
+include 'proxy-srv'
+
