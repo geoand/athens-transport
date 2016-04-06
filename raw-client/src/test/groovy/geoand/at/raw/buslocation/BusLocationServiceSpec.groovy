@@ -1,11 +1,11 @@
 package geoand.at.raw.buslocation
 
 import geoand.at.raw.test.support.AbstractWireMockSpecification
-import org.assertj.core.api.Assertions
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*
 import static geoand.at.raw.buslocation.BusLocationService.ACT
 import static geoand.at.raw.init.PathUtil.createActApiPath
+import static org.assertj.core.api.Assertions.assertThat
 
 /**
  * Created by gandrianakis on 6/4/2016.
@@ -59,6 +59,13 @@ class BusLocationServiceSpec extends AbstractWireMockSpecification {
 
         and: "assert the response was as expected"
             locations.size() == 2
-            Assertions.assertThat(locations*.vehicleNumber).containsOnly('89005', '89025')
+            assertThat(locations*.vehicleNumber).containsOnly('89005', '89025')
+
+        and: "test date"
+            final firstDate = locations.head().timestamp
+            assertThat(firstDate).isInSameYearAs('2016-04-06')
+            assertThat(firstDate).isInSameMonthAs('2016-04-06')
+            assertThat(firstDate).isInSameDayAs('2016-04-06')
+            assertThat(firstDate).isInSameHourAs('2016-04-06 13:52:37.000')
     }
 }

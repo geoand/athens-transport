@@ -1,5 +1,7 @@
 package geoand.at.raw.buslocation;
 
+import java.util.Date;
+
 /**
  * Created by gandrianakis on 6/4/2016.
  */
@@ -7,7 +9,7 @@ public class BusLocation {
 
     private final String vehicleNumber;
 
-    private final String timestamp;
+    private final Date timestamp;
 
     private final String latitude;
 
@@ -15,7 +17,7 @@ public class BusLocation {
 
     private final String routeCode;
 
-    public BusLocation(String vehicleNumber, String timestamp, String latitude, String longitude, String routeCode) {
+    public BusLocation(String vehicleNumber, Date timestamp, String latitude, String longitude, String routeCode) {
         this.vehicleNumber = vehicleNumber;
         this.timestamp = timestamp;
         this.latitude = latitude;
@@ -27,7 +29,7 @@ public class BusLocation {
         return vehicleNumber;
     }
 
-    public String getTimestamp() {
+    public Date getTimestamp() {
         return timestamp;
     }
 
