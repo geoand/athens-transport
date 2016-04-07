@@ -11,6 +11,6 @@ import org.springframework.context.annotation.Configuration
 open class RawClientConfig {
 
     @Bean
-    open fun factory(): Factory = Factory.live()
+    open fun factory() = Factory.live()
 
 }
