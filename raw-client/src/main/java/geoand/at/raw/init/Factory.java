@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import geoand.at.raw.buslocation.BusLocation;
 import geoand.at.raw.buslocation.BusLocationJacksonMixin;
 import geoand.at.raw.buslocation.BusLocationService;
+import geoand.at.raw.line.Line;
+import geoand.at.raw.line.LineJacksonMixin;
+import geoand.at.raw.line.LineService;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
@@ -33,10 +36,15 @@ public final class Factory {
     private static JacksonConverterFactory getJacksonConverterFactory() {
         final ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.addMixIn(BusLocation.class, BusLocationJacksonMixin.class);
+        objectMapper.addMixIn(Line.class, LineJacksonMixin.class);
         return JacksonConverterFactory.create(objectMapper);
     }
 
     public BusLocationService busLocationService() {
         return retrofit.create(BusLocationService.class);
+    }
+
+    public LineService lineService() {
+        return retrofit.create(LineService.class);
     }
 }
