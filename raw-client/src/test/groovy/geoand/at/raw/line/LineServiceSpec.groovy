@@ -3,7 +3,7 @@ package geoand.at.raw.line
 import geoand.at.raw.test.support.AbstractWireMockSpecification
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*
-import static geoand.at.raw.init.PathUtil.createActApiPath
+import static geoand.at.raw.util.PathUtil.createActApiPath
 import static geoand.at.raw.line.LineService.ACT
 import static org.assertj.core.api.Assertions.assertThat
 

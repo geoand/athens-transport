@@ -4,7 +4,9 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import geoand.at.raw.buslocation.*;
+import geoand.at.raw.buslocation.BusLocation;
+import geoand.at.raw.buslocation.BusLocationJacksonDeserializer;
+import geoand.at.raw.buslocation.BusLocationService;
 import geoand.at.raw.line.Line;
 import geoand.at.raw.line.LineJacksonMixin;
 import geoand.at.raw.line.LineService;
@@ -12,6 +14,10 @@ import geoand.at.raw.route.Route;
 import geoand.at.raw.route.RouteDirectionJacksonDeserializer;
 import geoand.at.raw.route.RouteJacksonMixin;
 import geoand.at.raw.route.RouteService;
+import geoand.at.raw.stop.Stop;
+import geoand.at.raw.stop.StopJacksonDeserializer;
+import geoand.at.raw.stop.StopService;
+import geoand.at.raw.util.PathUtil;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
@@ -61,6 +67,8 @@ public final class Factory {
 
         module.addDeserializer(Route.Direction.class, new RouteDirectionJacksonDeserializer());
 
+        module.addDeserializer(Stop.class, new StopJacksonDeserializer());
+
         objectMapper.registerModule(module);
     }
 
@@ -74,5 +82,9 @@ public final class Factory {
 
     public RouteService routeService() {
         return retrofit.create(RouteService.class);
+    }
+
+    public StopService stopService() {
+        return retrofit.create(StopService.class);
     }
 }

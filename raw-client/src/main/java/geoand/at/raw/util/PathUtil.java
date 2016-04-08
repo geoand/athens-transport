@@ -1,4 +1,4 @@
-package geoand.at.raw.init;
+package geoand.at.raw.util;
 
 import static java.lang.String.format;
 
@@ -7,15 +7,15 @@ import static java.lang.String.format;
  */
 public final class PathUtil {
 
-    static final String LIVE_HOST = "195.46.22.91";
+    private static final String LIVE_HOST = "195.46.22.91";  //TODO make this more configurable
 
     private PathUtil() {}
 
-    static String createBasePath() {
+    public static String createBasePath() {
         return createBasePath(LIVE_HOST);
     }
 
-    static String createBasePath(String host) {
+    public static String createBasePath(String host) {
         return format("http://%s/api/", host.replace("http://", "").replace("/", ""));
     }
 

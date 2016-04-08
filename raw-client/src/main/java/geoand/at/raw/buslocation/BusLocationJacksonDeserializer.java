@@ -2,14 +2,13 @@ package geoand.at.raw.buslocation;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import geoand.at.raw.Position;
+import geoand.at.raw.util.jackson.AbstractBaseJacksonDeserializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -18,7 +17,7 @@ import java.util.Locale;
 /**
  * Created by gandrianakis on 8/4/2016.
  */
-public class BusLocationJacksonDeserializer extends JsonDeserializer<BusLocation> {
+public class BusLocationJacksonDeserializer extends AbstractBaseJacksonDeserializer<BusLocation> {
 
     private final static Logger log = LoggerFactory.getLogger(BusLocationJacksonDeserializer.class);
 
@@ -54,7 +53,4 @@ public class BusLocationJacksonDeserializer extends JsonDeserializer<BusLocation
         return parseResult;
     }
 
-    private Double getDouble(JsonNode node, String name) {
-        return new BigDecimal(node.get(name).asText()).doubleValue();
-    }
 }

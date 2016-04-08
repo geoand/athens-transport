@@ -4,7 +4,7 @@ import geoand.at.raw.test.support.AbstractWireMockSpecification
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*
 import static geoand.at.raw.buslocation.BusLocationService.ACT
-import static geoand.at.raw.init.PathUtil.createActApiPath
+import static geoand.at.raw.util.PathUtil.createActApiPath
 import static org.assertj.core.api.Assertions.assertThat
 
 /**
