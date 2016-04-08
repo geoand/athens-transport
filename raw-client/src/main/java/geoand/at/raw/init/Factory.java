@@ -1,12 +1,16 @@
 package geoand.at.raw.init;
 
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import geoand.at.raw.buslocation.BusLocation;
 import geoand.at.raw.buslocation.BusLocationJacksonMixin;
 import geoand.at.raw.buslocation.BusLocationService;
 import geoand.at.raw.line.Line;
 import geoand.at.raw.line.LineJacksonMixin;
 import geoand.at.raw.line.LineService;
+import geoand.at.raw.route.*;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
@@ -35,9 +39,24 @@ public final class Factory {
 
     private static JacksonConverterFactory getJacksonConverterFactory() {
         final ObjectMapper objectMapper = new ObjectMapper();
+        addMixins(objectMapper);
+        addDeserializers(objectMapper);
+
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        return JacksonConverterFactory.create(objectMapper);
+    }
+
+    private static void addMixins(ObjectMapper objectMapper) {
         objectMapper.addMixIn(BusLocation.class, BusLocationJacksonMixin.class);
         objectMapper.addMixIn(Line.class, LineJacksonMixin.class);
-        return JacksonConverterFactory.create(objectMapper);
+        objectMapper.addMixIn(Route.class, RouteJacksonMixin.class);
+    }
+
+    private static void addDeserializers(ObjectMapper objectMapper) {
+        final SimpleModule module = new SimpleModule("AthensTransportModule", new Version(1, 0, 0, null, "athens-transport", "raw-client"));
+        module.addDeserializer(Route.Direction.class, new RouteDirectionJacksonDeserializer());
+        objectMapper.registerModule(module);
     }
 
     public BusLocationService busLocationService() {
@@ -46,5 +65,9 @@ public final class Factory {
 
     public LineService lineService() {
         return retrofit.create(LineService.class);
+    }
+
+    public RouteService routeService() {
+        return retrofit.create(RouteService.class);
     }
 }
