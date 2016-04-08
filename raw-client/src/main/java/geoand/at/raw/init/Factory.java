@@ -4,13 +4,14 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import geoand.at.raw.buslocation.BusLocation;
-import geoand.at.raw.buslocation.BusLocationJacksonMixin;
-import geoand.at.raw.buslocation.BusLocationService;
+import geoand.at.raw.buslocation.*;
 import geoand.at.raw.line.Line;
 import geoand.at.raw.line.LineJacksonMixin;
 import geoand.at.raw.line.LineService;
-import geoand.at.raw.route.*;
+import geoand.at.raw.route.Route;
+import geoand.at.raw.route.RouteDirectionJacksonDeserializer;
+import geoand.at.raw.route.RouteJacksonMixin;
+import geoand.at.raw.route.RouteService;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
@@ -48,14 +49,18 @@ public final class Factory {
     }
 
     private static void addMixins(ObjectMapper objectMapper) {
-        objectMapper.addMixIn(BusLocation.class, BusLocationJacksonMixin.class);
         objectMapper.addMixIn(Line.class, LineJacksonMixin.class);
+
         objectMapper.addMixIn(Route.class, RouteJacksonMixin.class);
     }
 
     private static void addDeserializers(ObjectMapper objectMapper) {
         final SimpleModule module = new SimpleModule("AthensTransportModule", new Version(1, 0, 0, null, "athens-transport", "raw-client"));
+
+        module.addDeserializer(BusLocation.class, new BusLocationJacksonDeserializer());
+
         module.addDeserializer(Route.Direction.class, new RouteDirectionJacksonDeserializer());
+
         objectMapper.registerModule(module);
     }
 

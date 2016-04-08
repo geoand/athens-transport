@@ -29,7 +29,7 @@ class BusLocationServiceSpec extends AbstractWireMockSpecification {
                 },
                 {
                   "VEH_NO": "89025",
-                  "CS_DATE": "Apr 6 2016 01:59:17:000PM",
+                  "CS_DATE": "Apr 6 2016 01:59:17:000AM",
                   "CS_LAT": "37.9431800",
                   "CS_LNG": "23.6853120",
                   "ROUTE_CODE": "1993"
@@ -61,11 +61,14 @@ class BusLocationServiceSpec extends AbstractWireMockSpecification {
             locations.size() == 2
             assertThat(locations*.vehicleNumber).containsOnly('89005', '89025')
 
+        and: "test position"
+            locations.head().position.latitude == 37.943462D
+
         and: "test date"
-            final firstDate = locations.head().timestamp
-            assertThat(firstDate).isInSameYearAs('2016-04-06')
-            assertThat(firstDate).isInSameMonthAs('2016-04-06')
-            assertThat(firstDate).isInSameDayAs('2016-04-06')
-            assertThat(firstDate).isInSameHourAs('2016-04-06 13:52:37.000')
+            final firstDate = locations.find{it.vehicleNumber == '89005'}.timestamp
+            assertThat(firstDate).isCloseTo('2016-04-06 13:52:37.000', 100)
+
+            final secondDate = locations.find{it.vehicleNumber == '89025'}.timestamp
+            assertThat(secondDate).isCloseTo('2016-04-06 01:59:17.000', 100)
     }
 }
