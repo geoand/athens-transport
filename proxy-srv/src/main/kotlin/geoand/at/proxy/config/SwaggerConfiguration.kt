@@ -20,16 +20,12 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 open class SwaggerConfiguration {
 
     @Bean
-    open fun docket(): Docket {
-        return Docket(DocumentationType.SWAGGER_2).select().paths(paths())
-                .apis(RequestHandlerSelectors.any())
-                .build()
-                .pathMapping("/")
-    }
+    open fun docket(): Docket = Docket(DocumentationType.SWAGGER_2).select().paths(paths())
+            .apis(RequestHandlerSelectors.any())
+            .build()
+            .pathMapping("/")
 
     @SuppressWarnings("unchecked")
-    private fun paths(): Predicate<String> {
-        return Predicates.not(PathSelectors.regex("/error"))
-    }
+    private fun paths(): Predicate<String> = Predicates.not(PathSelectors.regex("/error"))
 
 }
