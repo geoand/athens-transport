@@ -15,4 +15,10 @@ public interface RouteService {
 
     @GET("?act=" + BY_LINE_CODE_ACT)
     Call<List<Route>> byLineCode(@Query("p1") String lineCode);
+
+
+    String BY_STOP_CODE_ACT = "webRoutesForStop";
+
+    @GET("?act=" + BY_STOP_CODE_ACT)
+    Call<List<Route>> byStopCode(@Query("p1") String routeCode);
 }

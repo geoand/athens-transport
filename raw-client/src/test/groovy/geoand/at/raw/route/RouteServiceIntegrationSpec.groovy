@@ -1,7 +1,6 @@
 package geoand.at.raw.route
 
 import geoand.at.raw.init.Factory
-import geoand.at.raw.line.Line
 import spock.lang.Specification
 
 /**
@@ -9,7 +8,7 @@ import spock.lang.Specification
  */
 class RouteServiceIntegrationSpec extends Specification {
 
-    def "all returns correct data"() {
+    def "byLineCode returns correct data"() {
         given:
             final lineService = Factory.live().routeService()
 
@@ -21,5 +20,19 @@ class RouteServiceIntegrationSpec extends Specification {
 
         and: "greek characters handled correctly"
             routes*.routeDescriptionGr.any {it.contains('ΧΑΛΑΝΔΡΙ')}
+    }
+
+    def "byStopCode returns correct data"() {
+        given:
+            final lineService = Factory.live().routeService()
+
+        when:
+            final List<Route> routes = lineService.byStopCode('770029').execute().body()
+
+        then:
+            !routes.isEmpty()
+
+        and: "greek characters handled correctly"
+            routes*.routeDescriptionGr.any {it.contains('ΦΑΛΗΡΟ')}
     }
 }

@@ -3,14 +3,14 @@ package geoand.at.raw.route
 import geoand.at.raw.test.support.AbstractWireMockSpecification
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*
-import static geoand.at.raw.util.PathUtil.createActApiPath
 import static geoand.at.raw.route.RouteService.BY_LINE_CODE_ACT
+import static geoand.at.raw.util.PathUtil.createActApiPath
 import static org.assertj.core.api.Assertions.assertThat
 
 /**
  * Created by gandrianakis on 8/4/2016.
  */
-class RouteServiceSpec extends AbstractWireMockSpecification {
+class RouteServiceByLineCodeSpec extends AbstractWireMockSpecification {
 
     def "byLineCode returns expected data"() {
         given:
