@@ -14,5 +14,5 @@ public interface RouteService {
     String BY_LINE_CODE_ACT = "webGetRoutes";
 
     @GET("?act=" + BY_LINE_CODE_ACT)
-    Call<List<Route>> byLineCode(@Query("p1") String routeCode);
+    Call<List<Route>> byLineCode(@Query("p1") String lineCode);
 }
