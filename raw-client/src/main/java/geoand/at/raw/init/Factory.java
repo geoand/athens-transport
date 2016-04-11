@@ -4,9 +4,9 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import geoand.at.raw.buslocation.BusLocation;
-import geoand.at.raw.buslocation.BusLocationJacksonDeserializer;
-import geoand.at.raw.buslocation.BusLocationService;
+import geoand.at.raw.buslocation.VehicleLocation;
+import geoand.at.raw.buslocation.VehicleLocationJacksonDeserializer;
+import geoand.at.raw.buslocation.VehicleLocationService;
 import geoand.at.raw.line.Line;
 import geoand.at.raw.line.LineJacksonMixin;
 import geoand.at.raw.line.LineService;
@@ -63,7 +63,7 @@ public final class Factory {
     private static void addDeserializers(ObjectMapper objectMapper) {
         final SimpleModule module = new SimpleModule("AthensTransportModule", new Version(1, 0, 0, null, "athens-transport", "raw-client"));
 
-        module.addDeserializer(BusLocation.class, new BusLocationJacksonDeserializer());
+        module.addDeserializer(VehicleLocation.class, new VehicleLocationJacksonDeserializer());
 
         module.addDeserializer(Route.Direction.class, new RouteDirectionJacksonDeserializer());
 
@@ -72,8 +72,8 @@ public final class Factory {
         objectMapper.registerModule(module);
     }
 
-    public BusLocationService busLocationService() {
-        return retrofit.create(BusLocationService.class);
+    public VehicleLocationService busLocationService() {
+        return retrofit.create(VehicleLocationService.class);
     }
 
     public LineService lineService() {

@@ -17,15 +17,15 @@ import java.util.Locale;
 /**
  * Created by gandrianakis on 8/4/2016.
  */
-public class BusLocationJacksonDeserializer extends AbstractBaseJacksonDeserializer<BusLocation> {
+public class VehicleLocationJacksonDeserializer extends AbstractBaseJacksonDeserializer<VehicleLocation> {
 
-    private final static Logger log = LoggerFactory.getLogger(BusLocationJacksonDeserializer.class);
+    private final static Logger log = LoggerFactory.getLogger(VehicleLocationJacksonDeserializer.class);
 
     private static final long HOUR = 3600*1000; // in milli-seconds.
     private static final SimpleDateFormat sdf = new SimpleDateFormat("MMM dd yyyy HH:mm:ss:SSSaa", Locale.US);
 
     @Override
-    public BusLocation deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    public VehicleLocation deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         try {
             final JsonNode node = p.getCodec().readTree(p);
 
@@ -35,7 +35,7 @@ public class BusLocationJacksonDeserializer extends AbstractBaseJacksonDeseriali
             final Double longitude = getDouble(node, "CS_LNG");
             final String routeCode = node.get("ROUTE_CODE").asText();
 
-            return new BusLocation(vehicleNumber, getDate(timestampStr), new Position(latitude, longitude), routeCode);
+            return new VehicleLocation(vehicleNumber, getDate(timestampStr), new Position(latitude, longitude), routeCode);
         } catch (Exception e) {
             log.error("Unable to parse json", e);
             throw new IOException(e);

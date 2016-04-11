@@ -6,14 +6,14 @@ import spock.lang.Specification
 /**
  * Created by gandrianakis on 6/4/2016.
  */
-class BusLocationServiceIntegrationSpec extends Specification {
+class VehicleLocationServiceIntegrationSpec extends Specification {
 
     def "get returns a list of locations when called with a known correct routeCode"() {
         given:
             final busLocationService = Factory.live().busLocationService()
 
         when:
-            final List<BusLocation> locations = busLocationService.byRouteCode("1993").execute().body()
+            final List<VehicleLocation> locations = busLocationService.byRouteCode("1993").execute().body()
 
         then:
             !locations.isEmpty()

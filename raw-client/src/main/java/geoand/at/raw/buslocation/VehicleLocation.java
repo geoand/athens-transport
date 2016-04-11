@@ -7,7 +7,7 @@ import java.util.Date;
 /**
  * Created by gandrianakis on 6/4/2016.
  */
-public class BusLocation {
+public class VehicleLocation {
 
     private final String vehicleNumber;
 
@@ -17,7 +17,7 @@ public class BusLocation {
 
     private final Position position;
 
-    BusLocation(String vehicleNumber, Date timestamp, Position position, String routeCode) {
+    VehicleLocation(String vehicleNumber, Date timestamp, Position position, String routeCode) {
         this.vehicleNumber = vehicleNumber;
         this.timestamp = timestamp;
         this.position = position;

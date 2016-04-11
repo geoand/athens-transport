@@ -2,15 +2,15 @@ package geoand.at.raw.buslocation
 
 import geoand.at.raw.test.support.AbstractWireMockSpecification
 
+import static VehicleLocationService.BUS_LOCATION_ACT
 import static com.github.tomakehurst.wiremock.client.WireMock.*
-import static geoand.at.raw.buslocation.BusLocationService.BUS_LOCATION_ACT
 import static geoand.at.raw.util.PathUtil.createActApiPath
 import static org.assertj.core.api.Assertions.assertThat
 
 /**
  * Created by gandrianakis on 6/4/2016.
  */
-class BusLocationServiceSpec extends AbstractWireMockSpecification {
+class VehicleLocationServiceSpec extends AbstractWireMockSpecification {
 
     def "get returns expected data"() {
         given:
@@ -52,7 +52,7 @@ class BusLocationServiceSpec extends AbstractWireMockSpecification {
 
 
         when:
-            final List<BusLocation> locations = factory.busLocationService().byRouteCode(routeCode).execute().body()
+            final List<VehicleLocation> locations = factory.busLocationService().byRouteCode(routeCode).execute().body()
 
         then: "verify wiremock was used"
             verify(getRequestedFor(urlMatchingStrategy))
