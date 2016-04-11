@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface LineService {
 
-    String ACT = "webGetLines";
+    String GET_LINES_ACT = "webGetLines";
 
-    @GET("?act=" + ACT)
+    @GET("?act=" + GET_LINES_ACT)
     Call<List<Line>> all();
 }

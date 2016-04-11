@@ -11,8 +11,8 @@ import java.util.List;
  */
 public interface BusLocationService {
 
-    String ACT = "getBusLocation";
+    String BUS_LOCATION_ACT = "getBusLocation";
 
-    @GET("?act=" + ACT)
+    @GET("?act=" + BUS_LOCATION_ACT)
     Call<List<BusLocation>> byRouteCode(@Query("p1") String routeCode);
 }

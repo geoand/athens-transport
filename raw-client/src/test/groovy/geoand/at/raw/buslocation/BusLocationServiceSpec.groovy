@@ -3,7 +3,7 @@ package geoand.at.raw.buslocation
 import geoand.at.raw.test.support.AbstractWireMockSpecification
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*
-import static geoand.at.raw.buslocation.BusLocationService.ACT
+import static geoand.at.raw.buslocation.BusLocationService.BUS_LOCATION_ACT
 import static geoand.at.raw.util.PathUtil.createActApiPath
 import static org.assertj.core.api.Assertions.assertThat
 
@@ -38,7 +38,7 @@ class BusLocationServiceSpec extends AbstractWireMockSpecification {
             '''
 
         and: "create url matching strategy"
-            final urlMatchingStrategy = urlPathEqualTo("${createActApiPath(ACT)}&p1=$routeCode")
+            final urlMatchingStrategy = urlPathEqualTo("${createActApiPath(BUS_LOCATION_ACT)}&p1=$routeCode")
 
         and: "setup wiremock"
             stubFor(

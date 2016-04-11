@@ -4,7 +4,7 @@ import geoand.at.raw.test.support.AbstractWireMockSpecification
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*
 import static geoand.at.raw.util.PathUtil.createActApiPath
-import static geoand.at.raw.line.LineService.ACT
+import static geoand.at.raw.line.LineService.GET_LINES_ACT
 import static org.assertj.core.api.Assertions.assertThat
 
 /**
@@ -32,7 +32,7 @@ class LineServiceSpec extends AbstractWireMockSpecification {
             '''
 
         and: "create url matching strategy"
-            final urlMatchingStrategy = urlPathEqualTo(createActApiPath(ACT))
+            final urlMatchingStrategy = urlPathEqualTo(createActApiPath(GET_LINES_ACT))
 
         and: "setup wiremock"
             stubFor(
