@@ -15,4 +15,10 @@ open class RawServicesConfig {
 
     @Bean
     open fun stopService(factory: Factory) = factory.stopService()
+
+    @Bean
+    open fun routeService(factory: Factory) = factory.routeService()
+
+    @Bean
+    open fun lineService(factory: Factory) = factory.lineService()
 }
