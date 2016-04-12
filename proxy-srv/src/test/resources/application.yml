@@ -1,0 +1,9 @@
+swagger:
+  enabled: false
+
+gateway:
+  localPort: 8089
+
+logging:
+  level:
+    geoand: DEBUG

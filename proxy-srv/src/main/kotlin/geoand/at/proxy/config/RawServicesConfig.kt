@@ -11,5 +11,8 @@ import org.springframework.context.annotation.Configuration
 open class RawServicesConfig {
 
     @Bean
-    open fun busLocationService(factory: Factory) = factory.busLocationService()
+    open fun vehicleLocationService(factory: Factory) = factory.busLocationService()
+
+    @Bean
+    open fun stopService(factory: Factory) = factory.stopService()
 }

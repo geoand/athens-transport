@@ -18,6 +18,8 @@ import geoand.at.raw.stop.Stop;
 import geoand.at.raw.stop.StopJacksonDeserializer;
 import geoand.at.raw.stop.StopService;
 import geoand.at.raw.util.PathUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import retrofit2.Retrofit;
 import retrofit2.converter.jackson.JacksonConverterFactory;
 
@@ -25,6 +27,8 @@ import retrofit2.converter.jackson.JacksonConverterFactory;
  * Created by gandrianakis on 6/4/2016.
  */
 public final class Factory {
+
+    private final static Logger log = LoggerFactory.getLogger(Factory.class);
 
     private final Retrofit retrofit;
 
@@ -41,6 +45,7 @@ public final class Factory {
     }
 
     private static Retrofit createRetrofit(String baseUrl) {
+        log.debug("Using baseUrl = " + baseUrl + " to construct factory");
         return new Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(getJacksonConverterFactory()).build();
     }
 

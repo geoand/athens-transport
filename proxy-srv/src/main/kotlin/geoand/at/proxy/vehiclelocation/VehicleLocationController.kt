@@ -1,4 +1,4 @@
-package geoand.at.proxy.buslocation
+package geoand.at.proxy.vehiclelocation
 
 import geoand.at.raw.buslocation.VehicleLocation
 import geoand.at.raw.buslocation.VehicleLocationService

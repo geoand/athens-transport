@@ -17,7 +17,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 @Configuration
 @EnableSwagger2
 @ConditionalOnProperty("swagger.enabled")
-open class SwaggerConfiguration {
+open class SwaggerConfig {
 
     @Bean
     open fun docket(): Docket = Docket(DocumentationType.SWAGGER_2).select().paths(paths())

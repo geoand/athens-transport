@@ -1,6 +1,8 @@
 package geoand.at.proxy.config
 
 import geoand.at.raw.init.Factory
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
@@ -10,7 +12,12 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 open class RawClientConfig {
 
+    @ConditionalOnProperty("gateway.useLive")
     @Bean
-    open fun factory() = Factory.live()
+    open fun liveFactory() = Factory.live()
+
+    @ConditionalOnProperty("gateway.localPort")
+    @Bean
+    open fun localFactory(@Value("\${gateway.localPort}") port: Int) = Factory.custom("localhost:${port}")
 
 }
