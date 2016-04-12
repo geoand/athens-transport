@@ -1,4 +1,4 @@
-package geoand.at.raw.buslocation;
+package geoand.at.raw.vehiclelocation;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;

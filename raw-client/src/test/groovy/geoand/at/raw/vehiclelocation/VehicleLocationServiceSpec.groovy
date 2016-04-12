@@ -1,4 +1,4 @@
-package geoand.at.raw.buslocation
+package geoand.at.raw.vehiclelocation
 
 import geoand.at.raw.test.support.AbstractWireMockSpecification
 

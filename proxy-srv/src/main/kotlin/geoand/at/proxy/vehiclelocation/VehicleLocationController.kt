@@ -1,7 +1,7 @@
 package geoand.at.proxy.vehiclelocation
 
-import geoand.at.raw.buslocation.VehicleLocation
-import geoand.at.raw.buslocation.VehicleLocationService
+import geoand.at.raw.vehiclelocation.VehicleLocation
+import geoand.at.raw.vehiclelocation.VehicleLocationService
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import org.springframework.beans.factory.annotation.Autowired

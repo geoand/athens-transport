@@ -1,4 +1,4 @@
-package geoand.at.raw.buslocation;
+package geoand.at.raw.vehiclelocation;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
